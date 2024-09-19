@@ -119,24 +119,26 @@ print(f" Para {pais1}: {cuota_pais1:.2f}  vs {pais2}: {cuota_pais2:.2f}")
 print(f"Empate: {cuota_empate:.2f}")
 print("  _______________________________")
 
-eleccion = input(f"¿Por cuál equipo quieres apostar {pais1} o {pais2}")
+eleccion = input(f"¿Por cuál equipo quieres apostar ({pais1} - {pais2}) o Empate : ")
 
-apuesta = float(input("El mínimo de apuesta es 10 USD, ¿Cuánto deseas apostar?"))
+apuesta = float(input("El mínimo de apuesta es 10 USD, ¿Cuánto deseas apostar?: "))
 apuesta_valida = apuesta_dolares(apuesta)
-gol_equipo1, gol_equipo2, gol_ganador = goles_aleatorio()
-
-equipo_valido_ganador = equipo_ganador(
-    pais1, pais2, gol_equipo2, gol_equipo1, gol_ganador
-)
+gol_equipo1, gol_equipo2 = goles_aleatorio()
+ganador = equipo_ganador(pais1, pais2, gol_equipo1, gol_equipo2)
 
 
 print(f"Confirmamos de recibido su apuesta {apuesta_valida}")
 print(f"Confirmamos que seleccionó apostar por {eleccion}")
 
-if gol_ganador == "Empate":
-    print(
-        f"El partido terminó en empate: {pais1} {gol_equipo1} - {gol_equipo2} {pais2}"
-    )
+if ganador == eleccion:
+    if ganador == pais1:
+        ganancia = apuesta_valida * cuota_pais1
+    elif ganador == pais2:
+        ganancia = apuesta_valida * cuota_pais2
+    elif ganador == "Empate":
+        ganancia = apuesta_valida * cuota_empate
+    print(f"Resultado: {pais1} - {gol_equipo1} - {pais2} - {gol_equipo2}")
+    print(f"¡Felicidades! Ganaste {ganancia:.2f} dólares apostando por {ganador}.")
 else:
     print(f"Resultado: {pais1} - {gol_equipo1} - {pais2} - {gol_equipo2}")
-    print(f"El equipo ganador es {equipo_valido_ganador}")
+    print(f"Lo siento, perdiste. {ganador} fue el ganador.")

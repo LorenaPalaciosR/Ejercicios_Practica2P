@@ -48,6 +48,46 @@ def pais_aleatorio(paises):
     return pais1, pais2
 
 
+def apuesta_dolares(apuesta):
+
+    while apuesta < 10 or apuesta == " ":
+        print("La apuesta mínima es de 10 dólares.")
+        apuesta = float(input("Ingresa una nueva cantidad: "))
+    return apuesta
+
+
+def equipo_ganador(pais1, pais2, gol_equipo2, gol_equipo1, gol_ganador):
+
+    if gol_equipo1 > gol_equipo2:
+        ganador = pais1
+    elif gol_equipo2 < gol_equipo1:
+        ganador = pais2
+    else:
+        ganador = gol_ganador
+
+    return ganador
+
+
+def cuota_aleatoria():
+    cuota_pais1 = random.uniform(1.5, 3.0)
+    cuota_pais2 = random.uniform(1.5, 3.0)
+    return cuota_pais1, cuota_pais2
+
+
+def goles_aleatorio():
+    gol_equipo1 = random.randint(0, 10)
+    gol_equipo2 = random.randint(0, 10)
+    gol_ganador = None
+
+    if gol_equipo1 > gol_equipo2:
+        gol_ganador = "Equipo 1"
+    elif gol_equipo2 > gol_equipo1:
+        gol_ganador = "Equipo 2"
+    else:
+        gol_ganador = "Empate"
+    return gol_equipo1, gol_equipo2, gol_ganador
+
+
 # Variables
 
 dia = date.today()
@@ -67,6 +107,8 @@ paises = [
 
 pais1, pais2 = pais_aleatorio(paises)
 
+cuota_pais1, cuota_pais2 = cuota_aleatoria()
+
 # Programa
 
 
@@ -77,3 +119,33 @@ print(f" Fecha:  {formato_fecha(dia)}")
 print(f" {pais1} vs {pais2}")
 print(f" Hora: {hora_random}")
 print("  _______________________________")
+
+
+print("  _______________________________")
+
+print(" Cuotas por equipo")
+print(f" Para {pais1}: {cuota_pais1:.2f}  vs {pais2}: {cuota_pais2:.2f}")
+
+print("  _______________________________")
+
+eleccion = input(f"¿Por cuál equipo quieres apostar {pais1} o {pais2}")
+
+apuesta = float(input("El mínimo de apuesta es 10 USD, ¿Cuánto deseas apostar?"))
+apuesta_valida = apuesta_dolares(apuesta)
+gol_equipo1, gol_equipo2, gol_ganador = goles_aleatorio()
+
+equipo_valido_ganador = equipo_ganador(
+    pais1, pais2, gol_equipo2, gol_equipo1, gol_ganador
+)
+
+
+print(f"Confirmamos de recibido su apuesta {apuesta_valida}")
+print(f"Confirmamos que seleccionó apostar por {eleccion}")
+
+if gol_ganador == "Empate":
+    print(
+        f"El partido terminó en empate: {pais1} {gol_equipo1} - {gol_equipo2} {pais2}"
+    )
+else:
+    print(f"Resultado: {pais1} - {gol_equipo1} - {pais2} - {gol_equipo2}")
+    print(f"El equipo ganador es {equipo_valido_ganador}")

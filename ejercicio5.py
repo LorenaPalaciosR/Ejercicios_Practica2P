@@ -56,36 +56,27 @@ def apuesta_dolares(apuesta):
     return apuesta
 
 
-def equipo_ganador(pais1, pais2, gol_equipo2, gol_equipo1, gol_ganador):
+def equipo_ganador(pais1, pais2, gol_equipo1, gol_equipo2):
 
     if gol_equipo1 > gol_equipo2:
-        ganador = pais1
-    elif gol_equipo2 < gol_equipo1:
-        ganador = pais2
+        return pais1
+    elif gol_equipo2 > gol_equipo1:
+        return pais2
     else:
-        ganador = gol_ganador
-
-    return ganador
+        return "Empate"
 
 
 def cuota_aleatoria():
     cuota_pais1 = random.uniform(1.5, 3.0)
     cuota_pais2 = random.uniform(1.5, 3.0)
-    return cuota_pais1, cuota_pais2
+    cuota_empate = random.uniform(2.0,4.0)
+    return cuota_pais1, cuota_pais2, cuota_empate
 
 
 def goles_aleatorio():
     gol_equipo1 = random.randint(0, 10)
     gol_equipo2 = random.randint(0, 10)
-    gol_ganador = None
-
-    if gol_equipo1 > gol_equipo2:
-        gol_ganador = "Equipo 1"
-    elif gol_equipo2 > gol_equipo1:
-        gol_ganador = "Equipo 2"
-    else:
-        gol_ganador = "Empate"
-    return gol_equipo1, gol_equipo2, gol_ganador
+    return gol_equipo1, gol_equipo2
 
 
 # Variables
@@ -107,7 +98,7 @@ paises = [
 
 pais1, pais2 = pais_aleatorio(paises)
 
-cuota_pais1, cuota_pais2 = cuota_aleatoria()
+cuota_pais1, cuota_pais2, cuota_empate = cuota_aleatoria()
 
 # Programa
 
@@ -125,7 +116,7 @@ print("  _______________________________")
 
 print(" Cuotas por equipo")
 print(f" Para {pais1}: {cuota_pais1:.2f}  vs {pais2}: {cuota_pais2:.2f}")
-
+print(f"Empate: {cuota_empate:.2f}")
 print("  _______________________________")
 
 eleccion = input(f"¿Por cuál equipo quieres apostar {pais1} o {pais2}")

@@ -3,10 +3,8 @@ import datetime
 import random
 
 
-# 5) En este ejercicio, tendrán total libertad para elegir la problemática y la mejor solución.
-# Cada grupo podrá decidir su propio enfoque y desarrollar el software según sus criterios.
-# El grupo que presente la mejor solución será el único en recibir los 60 puntos asignados a esta pregunta.
-# ¡Buena suerte! -
+# 5) El equipo 3 de Python es aficinado al fútbol, este 2024 se llevará a cabo la Copa América esta semana. Crea un programa de
+# apuestas para que los integrantes puedan elegir al equipo ganador e inventir su dinero.
 
 # Funciones
 
@@ -69,7 +67,7 @@ def equipo_ganador(pais1, pais2, gol_equipo1, gol_equipo2):
 def cuota_aleatoria():
     cuota_pais1 = random.uniform(1.5, 3.0)
     cuota_pais2 = random.uniform(1.5, 3.0)
-    cuota_empate = random.uniform(2.0,4.0)
+    cuota_empate = random.uniform(2.0, 4.0)
     return cuota_pais1, cuota_pais2, cuota_empate
 
 
@@ -103,7 +101,7 @@ cuota_pais1, cuota_pais2, cuota_empate = cuota_aleatoria()
 # Programa
 
 
-print("Bienvenido a Apuestas.com")
+print("Bienvenido a La casa de la Apuesta")
 print("**********")
 print("  _______________________________")
 print(f" Fecha:  {formato_fecha(dia)}")
